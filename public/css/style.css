@@ -367,6 +367,12 @@ text-align: center;
 width: 100%;
 
 }
+.task-add button{
+  color:#1a1a1a;
+  cursor: pointer;
+  padding: 6px;
+  margin: 0 auto;
+  }
 
 .container-task-add:hover{
   background-color: #eadaff;
@@ -384,22 +390,24 @@ width: 100%;
 .task-tools ul li,.task-tools-edit ul li{
   display: inline-block;
 }
-.task-tools ul li a,.task-tools-edit ul li a{
+.task-tools ul li button,.task-tools-edit ul li button{
   padding: 5px;
   border-radius: 50%;
   background-color: #d6d6d6;
   height: 30px;
   width: 30px;
   text-align: center;
+  color: #1a1a1a;
+  cursor: pointer;
 }
 .save-task{
   background-color: rgb(0, 124, 0) !important;
-  color: #fff;
+  color: #fff !important;
 }
 
 .cancel-task{
   background-color: #b3250c !important;
-  color: #fff;
+  color: #fff !important;
 }
 
 .time-active{
