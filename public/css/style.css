@@ -332,6 +332,7 @@ h5{
   border-radius: 8px;
   border: 2px solid var(--color-secondary);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
 }
 .container-task-edit input{
   border: none;

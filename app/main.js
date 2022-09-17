@@ -1,13 +1,15 @@
 import '../public/css/style.css'
+import Sortable from 'sortablejs';
 import javascriptLogo from '../javascript.svg'
 import { setupCounter } from './helpers/counter.js'
+import { setupCreateBD } from "./helpers/createBD";
 import { setupMenu } from './modules/menu/menu'
 import { setupReloj } from "./modules/reloj/reloj";
 import { setupTareaAdd} from "./modules/tareas/tareaAdd";
 import { setupTareaEdit } from "./modules/tareas/tareaEdit";
 import { setupTarea } from "./modules/tareas/tarea";
 
-console.log(javascriptLogo)
+setupCreateBD();
 document.querySelector('#app').innerHTML =
 /*html*/ `
   <div>
@@ -33,7 +35,6 @@ document.querySelector('#app').innerHTML =
       <div class="tareas neumorphic">
           <h3>Tareas</h3>
           <div id="tarea">
-            
             <div class="container-task hecho">
                 <div class="task">
                     <div class="task-mark"><a href="#"><i class="fa-sharp fa-solid fa-lg fa-circle-check"></i></a></div>
@@ -59,5 +60,13 @@ document.querySelector('#app').innerHTML =
 
 setupMenu(document.querySelector('#menu'));
 setupReloj(document.querySelector('#reloj'));
-setupTareaAdd(document.querySelector('#addTarea'),setupTarea);
-setupTareaEdit(document.querySelector('#tarea'));
+setupTareaAdd(document.querySelector('#addTarea'),setupTareaEdit);
+// setupTareaEdit(document.querySelector('#tarea'));
+
+
+
+Sortable.create(tarea,{
+  group:'tarea',
+  animation:200
+});
+

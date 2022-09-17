@@ -2,6 +2,7 @@ export function setupTareaEdit(element){
 
     let taskEdit = document.createElement('div');
     taskEdit.classList.add('container-task-edit');
+    //taskEdit.style = 'display:block'
     taskEdit.innerHTML = /*html */`
         <div class="task">   
             <input type="text" placeholder="Descripción de la tarea">
@@ -14,5 +15,16 @@ export function setupTareaEdit(element){
         </div>
     `
 
+
     element.append(taskEdit)
+
+    document.addEventListener('mouseup', function(e) {
+        let container = document.querySelector('.container-task-edit');
+        let containerTaskAdd = document.querySelector('.container-task-add');
+        if (!container.contains(e.target)) {
+            container.style.display = 'none';
+            containerTaskAdd.style.display = 'flex';
+        }
+    });
+
     }
