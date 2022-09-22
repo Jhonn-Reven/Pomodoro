@@ -16,8 +16,16 @@ element.innerHTML =/*html */`
             <circle id="circle" cx="140" cy="140" r="132" stroke-linecap="round" />
         </svg>
     </div>
-`
+`}
 
 
-
+export function setupRelojTime(element){
+    element.innerHTML =/*html */`
+         <button class="neumorphic--pressed time-active"  >Pomodoro</button>
+          <button class="neumorphic" >Descanso</button>
+          <button  class="neumorphic">Descanso Largo</button>
+    `
 }
+
+
+

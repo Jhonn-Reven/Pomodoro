@@ -324,7 +324,7 @@ h5{
   
 }
 
-.container-task,.container-task-edit{
+.container-task,.container-task-edit,.container-task-new{
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
@@ -334,7 +334,7 @@ h5{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
 }
-.container-task-edit input{
+.container-task-edit input,.container-task-new input{
   border: none;
   outline: none;
   background-color: #f1f0f0;
@@ -379,7 +379,7 @@ width: 100%;
   background-color: #eadaff;
   transition: all ease .5s;
 }
-.container-task-edit input:focus{
+.container-task-edit input:focus,.container-task-new input:focus{
   color:#333;
 }
 

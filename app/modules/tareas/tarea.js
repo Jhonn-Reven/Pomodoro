@@ -16,3 +16,21 @@ task.innerHTML = /*html */`
 `
 element.append(task)
 }
+
+
+export function setupTareaHecho(){
+    let task = /*html */`
+    <div class="container-task hecho">
+                <div class="task">
+                    <div class="task-mark"><a href="#"><i class="fa-sharp fa-solid fa-lg fa-circle-check"></i></a></div>
+                    <div class="task-title"> Tarea de prueba </div>
+                </div>
+                <div class="task-tools">
+                    <ul>
+                    <li><button><i class="fa-solid fa-pencil"></i></button></li>
+                    <li><button><i class="fa-solid fa-trash"></i></button></li>
+                    </ul>
+                </div>
+            </div>
+    `
+}
