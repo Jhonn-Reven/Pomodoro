@@ -4,7 +4,7 @@ import { setupCreateBD } from "./helpers/createBD";
 import { setupMenu } from './modules/menu/menu'
 import { setupReloj,setupRelojTime } from "./modules/reloj/reloj";
 import { setupTareaAdd} from "./modules/tareas/tareaAdd";
-
+import { setupTarea} from "./modules/tareas/tarea";
 
 
 setupCreateBD();
@@ -41,7 +41,7 @@ setupRelojTime(document.querySelector('#times'));
 setupMenu(document.querySelector('#menu'));
 setupReloj(document.querySelector('#reloj'));
 setupTareaAdd(document.querySelector('#addTarea'));
-
+setupTarea(document.querySelector('#tarea'));
 
 
 

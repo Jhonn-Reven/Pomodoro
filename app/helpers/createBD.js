@@ -6,17 +6,19 @@ export function setupCreateBD(){
         const request = indexedDB.open('pomodoro_jreven',1);
         request.onsuccess = () =>{
             db = request.result;
-            console.log('Abierto : ', db)
+            //console.log('Abierto: ', db)
         }
 
         request.onupgradeneeded = () =>{
             db =request.result;
-            const objectStore = db.createObjectStore('task')
-            console.log('Creado: ', db)
+            const objectStore = db.createObjectStore('task',{
+                autoIncrement:true
+            })
+           // console.log('Creado: ', db)
         }
 
         request.onerror = (error) =>{
-            console.log('ERROR: ', error)
+            //console.log('ERROR: ', error)
         }
     }
 }

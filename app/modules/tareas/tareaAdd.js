@@ -1,14 +1,13 @@
-// 
 
 
 export function setupTareaAdd(element, fn){
 
-    const createHtmlTask = function(){
-        let taskAdd = document.createElement('div');
-        taskAdd.classList.add('container-task-new');
-        taskAdd.innerHTML = /*html */`
+    const createHtmlFormTask = function(){
+        let taskForm = document.createElement('div');
+        taskForm.classList.add('container-task-new');
+        taskForm.innerHTML = /*html */`
             <div class="task">   
-                <input type="text" placeholder="Descripción de la tarea">
+                <input type="text" name='task' placeholder="Descripción de la tarea">
             </div>
             <div class="task-tools-edit">
                 <ul>
@@ -17,7 +16,25 @@ export function setupTareaAdd(element, fn){
                 </ul>
             </div>
         `
-        return taskAdd;
+        return taskForm;
+
+    }
+    const createHtmlNewTask = function(id,title){
+        let taskNew = document.createElement('div');
+        taskNew.classList.add('container-task');
+        taskNew.innerHTML = /*html */`
+            <div class="task" id='${id}'>
+                <div class="task-mark" ><a href="#"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
+                <div class="task-title">${title}</div>
+            </div>
+            <div class="task-tools">
+                <ul>
+                    <li><button id="editTarea"><i class="fa-solid fa-pencil"></i></button></li>
+                    <li><button id="removeTarea"><i class="fa-solid fa-trash"></i></button></li>
+                </ul>
+            </div>
+        `
+        return taskNew;
 
     }
 
@@ -30,6 +47,67 @@ export function setupTareaAdd(element, fn){
             containerShow.style.display= 'block' 
         })
     }
+
+    const actionSave = function(tareaParent,containerRemove,containerShow){
+       
+        let btnSave = document.querySelector('.save-task');
+        let titleTarea = document.querySelector('[name="task"]');
+
+        btnSave.addEventListener('click', ()=>{
+            const data = {
+                titleTarea:titleTarea.value,
+                state: 1   
+            }
+            addData(data)
+            containerRemove.remove();
+            containerShow.style.display= 'block' 
+            readData(tareaParent)
+            
+        })
+        
+     }
+
+    const addData = (data) =>{
+    const indexedDB = window.indexedDB;
+    if(indexedDB){
+        let db;
+        const request = indexedDB.open('pomodoro_jreven',1);
+        request.onsuccess = () =>{
+            db = request.result;
+            const transaction = db.transaction(['task'],'readwrite');
+            const objectStore = transaction.objectStore('task');
+            const requests = objectStore.add(data) 
+            
+        }    
+    }
+    }
+
+    const readData = (tareaParent) =>{
+        tareaParent.textContent = '';
+        const indexedDB = window.indexedDB;
+        if(indexedDB){
+            let db;
+            const request = indexedDB.open('pomodoro_jreven',1);
+            request.onsuccess = () =>{
+                db = request.result;
+                const transaction = db.transaction(['task'],'readonly');
+                const objectStore = transaction.objectStore('task');
+                const requests = objectStore.openCursor() 
+
+                requests.onsuccess =(e)=>{
+                    const cursor = e.target.result
+                    if(cursor){
+                        //data = cursor.value;
+                        //console.log(cursor)
+                        tareaParent.append(createHtmlNewTask(cursor.primaryKey,cursor.value.titleTarea))
+                        cursor.continue()
+                    }
+                }
+                
+            }    
+        }
+    }
+
 
     const actionHidden = function(containerRemove,containerShow){
         document.addEventListener('mouseup', (e)=>{
@@ -50,15 +128,30 @@ export function setupTareaAdd(element, fn){
         let tareaParent = document.querySelector('#tarea');
         let containerTaskAdd = document.querySelector('.container-task-add');
         containerTaskAdd.style = 'display:none; transition:all .5s  ease;'; 
-        tareaParent.append(createHtmlTask())
+        tareaParent.append(createHtmlFormTask())
 
         let containerTaskNew = document.querySelector('.container-task-new');
         actionCancel(containerTaskNew,containerTaskAdd)
+        actionSave(tareaParent,containerTaskNew,containerTaskAdd)
         actionHidden(containerTaskNew,containerTaskAdd)
             
     })
 
+    function setupCreateBD(){
 
+        const indexedDB = window.indexedDB;
+        if(indexedDB){
+            let db;
+            const request = indexedDB.open('pomodoro_jreven',1);
+            request.onsuccess = () =>{
+                db = request.result;
+               return db
+            }
+
+            
+        }
+        
+    }
 
 
 }
