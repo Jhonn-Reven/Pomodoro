@@ -22,21 +22,25 @@ export function setupTareaAdd(element, fn){
     const createHtmlNewTask = function(id,title){
         let taskNew = document.createElement('div');
         taskNew.classList.add('container-task');
+        taskNew.setAttribute('id',id);
         taskNew.innerHTML = /*html */`
-            <div class="task" id='${id}'>
+            <div class="task">
                 <div class="task-mark" ><a href="#"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
                 <div class="task-title">${title}</div>
             </div>
             <div class="task-tools">
                 <ul>
-                    <li><button id="editTarea"><i class="fa-solid fa-pencil"></i></button></li>
-                    <li><button id="removeTarea"><i class="fa-solid fa-trash"></i></button></li>
+                    <li><button class="editTarea" data-key='${id}' data-daed='${id}' onclick="actionEdit(this)"><i class="fa-solid fa-pencil"></i></button></li>
+                    <li><button class="removeTarea" data-key='${id}' ><i class="fa-solid fa-trash"></i></button></li>
                 </ul>
             </div>
         `
         return taskNew;
-
+       
     }
+
+   
+      
 
     const actionCancel = function(containerRemove,containerShow){
        // console.log(containerRemove);
@@ -121,8 +125,9 @@ export function setupTareaAdd(element, fn){
          })
      }
 
+
     
-    
+ 
     element.addEventListener('click', ()=>{
         
         let tareaParent = document.querySelector('#tarea');
@@ -137,21 +142,7 @@ export function setupTareaAdd(element, fn){
             
     })
 
-    function setupCreateBD(){
-
-        const indexedDB = window.indexedDB;
-        if(indexedDB){
-            let db;
-            const request = indexedDB.open('pomodoro_jreven',1);
-            request.onsuccess = () =>{
-                db = request.result;
-               return db
-            }
-
-            
-        }
-        
-    }
+    
 
 
 }

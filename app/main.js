@@ -4,6 +4,7 @@ import { setupCreateBD } from "./helpers/createBD";
 import { setupMenu } from './modules/menu/menu'
 import { setupReloj,setupRelojTime } from "./modules/reloj/reloj";
 import { setupTareaAdd} from "./modules/tareas/tareaAdd";
+import { setupTareaEdit} from "./modules/tareas/tareaEdit";
 import { setupTarea} from "./modules/tareas/tarea";
 
 
@@ -37,6 +38,9 @@ document.querySelector('#app').innerHTML =
     </div>   
   </div>
 `
+
+
+
 setupRelojTime(document.querySelector('#times'));
 setupMenu(document.querySelector('#menu'));
 setupReloj(document.querySelector('#reloj'));
@@ -45,8 +49,14 @@ setupTarea(document.querySelector('#tarea'));
 
 
 
+
 Sortable.create(tarea,{
   group:'tarea',
   animation:200
 });
 
+function actionEdit(btn){
+
+  console.log(btn.target);
+
+}

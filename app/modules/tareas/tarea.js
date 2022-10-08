@@ -31,15 +31,16 @@ export function setupTarea(element){
     const createHtmlNewTask = function(id,title){
         let taskNew = document.createElement('div');
         taskNew.classList.add('container-task');
+        // taskNew.setAttribute('id',id);
         taskNew.innerHTML = /*html */`
-            <div class="task" id='${id}'>
+            <div class="task">
                 <div class="task-mark" ><a href="#"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
                 <div class="task-title">${title}</div>
             </div>
             <div class="task-tools">
                 <ul>
-                    <li><button id="editTarea"><i class="fa-solid fa-pencil"></i></button></li>
-                    <li><button id="removeTarea"><i class="fa-solid fa-trash"></i></button></li>
+                    <li><button id="editTarea" data-key='${id}' onclick="actionEdit(this)"><i class="fa-solid fa-pencil" ></i></button></li>
+                    <li><button id="removeTarea" data-key='${id}' ><i class="fa-solid fa-trash"'></i></button></li>
                 </ul>
             </div>
         `
@@ -47,7 +48,8 @@ export function setupTarea(element){
 
     }
 
-   
+    
+      
 
 }
 
