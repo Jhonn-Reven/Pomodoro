@@ -39,8 +39,8 @@ document.querySelector('#app').innerHTML =
   </div>
 `
 
-
-
+window.setupTareaEdit =  setupTareaEdit;
+// object.addEventListener("click", setupTareaEdit(this));
 setupRelojTime(document.querySelector('#times'));
 setupMenu(document.querySelector('#menu'));
 setupReloj(document.querySelector('#reloj'));
