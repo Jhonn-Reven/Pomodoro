@@ -18,7 +18,15 @@ export function setupTareaEdit(element){
             containerTask.classList.add('container-task-new');
 
             containerTask.innerHTML = createHtmlFormTask(key,data.titleTarea)
-            document.querySelector('#taskEdit'+key).focus();
+            let inputEdit = document.querySelector('#taskEdit'+key);
+            inputEdit.focus()
+            if (typeof inputEdit.selectionStart == "number") {
+                inputEdit.selectionStart = inputEdit.selectionEnd = inputEdit.value.length;
+            } else if (typeof inputEdit.createTextRange != "undefined") {           
+                var range = inputEdit.createTextRange();
+                range.collapse(false);
+                range.select();
+            }
             actionCancel(key,data.titleTarea,containerTask) 
             actionSave(key,containerTask) 
             actionSaveEnter(key,containerTask) 
