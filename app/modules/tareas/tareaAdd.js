@@ -19,6 +19,7 @@ export function setupTareaAdd(element, fn){
         return taskForm;
 
     }
+
     const createHtmlNewTask = function(id,title){
         let taskNew = document.createElement('div');
         taskNew.classList.add('container-task');
@@ -30,8 +31,8 @@ export function setupTareaAdd(element, fn){
             </div>
             <div class="task-tools">
                 <ul>
-                    <li><button class="editTarea" data-key='${id}' data-daed='${id}' onclick="setupTareaEdit(this)"><i class="fa-solid fa-pencil"></i></button></li>
-                    <li><button class="removeTarea" data-key='${id}' ><i class="fa-solid fa-trash"></i></button></li>
+                    <li><button class="editTarea" data-key='${id}'  onclick="setupTareaEdit(this)"><i class="fa-solid fa-pencil"></i></button></li>
+                    <li><button class="removeTarea" data-key='${id}' onclick="setupTareaDelete(this)" ><i class="fa-solid fa-trash"></i></button></li>
                 </ul>
             </div>
         `
@@ -66,6 +67,21 @@ export function setupTareaAdd(element, fn){
             containerShow.style.display= 'block' 
             readData(tareaParent)
             
+        })
+        titleTarea.addEventListener('keyup', (e)=>{
+
+            if (e.key === 'Enter') {
+
+            const data = {
+                titleTarea:titleTarea.value,
+                state: 1   
+            }
+            addData(data)
+            containerRemove.remove();
+            containerShow.style.display= 'block' 
+            readData(tareaParent)
+
+            }
         })
         
      }
@@ -112,6 +128,7 @@ export function setupTareaAdd(element, fn){
     }
 
 
+
     const actionHidden = function(containerRemove,containerShow){
         document.addEventListener('mouseup', (e)=>{
             if (!containerRemove.contains(e.target)) { 
@@ -138,6 +155,8 @@ export function setupTareaAdd(element, fn){
         actionCancel(containerTaskNew,containerTaskAdd)
         actionSave(tareaParent,containerTaskNew,containerTaskAdd)
         actionHidden(containerTaskNew,containerTaskAdd)
+
+        document.querySelector('[name="task"]').focus();
             
     })
 

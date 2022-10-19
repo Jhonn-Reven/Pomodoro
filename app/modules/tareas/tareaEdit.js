@@ -1,25 +1,8 @@
 export function setupTareaEdit(element){
 
-    
     const actionEdit = function(tareaParent){
-
         let id = parseInt(element.dataset.key);
-        console.log(element.dataset.key);
-        
         editData(id);
-        
-        // let btnSave = document.querySelector('.save-task');
-        // let titleTarea = document.querySelector('[name="task"]');
-
-        // btnSave.addEventListener('click', ()=>{
-        //     const data = {
-        //         titleTarea:titleTarea.value,
-        //         state: 1   
-        //     }
-        //     editData(key)
-        //     readData(tareaParent)
-        // })
-        
     }
 
         
@@ -35,9 +18,10 @@ export function setupTareaEdit(element){
             containerTask.classList.add('container-task-new');
 
             containerTask.innerHTML = createHtmlFormTask(key,data.titleTarea)
-            const inpuEdit = document.querySelector('#taskEdit'+key).focus();
+            document.querySelector('#taskEdit'+key).focus();
             actionCancel(key,data.titleTarea,containerTask) 
             actionSave(key,containerTask) 
+            actionSaveEnter(key,containerTask) 
         })
         
      }
@@ -86,8 +70,8 @@ export function setupTareaEdit(element){
             </div>
             <div class="task-tools">
                 <ul>
-                    <li><button class="editTarea" data-key='${id}' data-daed='${id}' onclick="setupTareaEdit(this)"><i class="fa-solid fa-pencil"></i></button></li>
-                    <li><button class="removeTarea" data-key='${id}' ><i class="fa-solid fa-trash"></i></button></li>
+                    <li><button class="editTarea" data-key='${id}' onclick="setupTareaEdit(this)"><i class="fa-solid fa-pencil"></i></button></li>
+                    <li><button class="removeTarea" data-key='${id}' onclick="setupTareaDelete(this)"><i class="fa-solid fa-trash"></i></button></li>
                 </ul>
             </div>
         `
@@ -126,6 +110,33 @@ export function setupTareaEdit(element){
         
      }
 
+     const actionSaveEnter = function(id,containerTask){
+       
+        let inputSave =  document.querySelector('#taskEdit'+id);;
+        // console.log("🚀 ~ file: tareaEdit.js ~ line 133 ~ actionSaveEnter ~ inputSave", inputSave)
+        let titleTarea = document.querySelector('[name="task"]');
+       
+
+        inputSave.addEventListener('keyup', (e)=>{
+            // console.log(e);
+            if (e.key === 'Enter') {
+            
+            const data = {
+                titleTarea:titleTarea.value,
+                state: 1   
+            }
+            updateData(data,id);
+            readOneData(id,(data)=>{
+                console.log(containerTask)
+                containerTask.classList.remove('container-task-new');
+                containerTask.classList.add('container-task');
+                containerTask.innerHTML = createHtmlViewTask(id,data.titleTarea)
+            })    
+            }
+        })
+        
+     }
+
 
      const updateData = (data,id) =>{
         const indexedDB = window.indexedDB;
@@ -143,20 +154,8 @@ export function setupTareaEdit(element){
         }
  
 
-   
- 
-     
-         
         let tareaParent = document.querySelector('#tarea');
         actionEdit(tareaParent);
-        
-        //  containerTaskAdd.style = 'display:none; transition:all .5s  ease;'; 
-
- 
-        //  let containerTaskNew = document.querySelector('.container-task-new');
-        //  actionCancel(containerTaskNew,containerTaskAdd)
-        //  actionSave(tareaParent,containerTaskNew,containerTaskAdd)
-        //  actionHidden(containerTaskNew,containerTaskAdd)
 
 
     }

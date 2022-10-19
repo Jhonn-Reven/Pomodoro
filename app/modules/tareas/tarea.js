@@ -40,7 +40,7 @@ export function setupTarea(element){
             <div class="task-tools">
                 <ul>
                     <li><button id="editTarea" data-key='${id}' onclick="setupTareaEdit(this)"><i class="fa-solid fa-pencil" ></i></button></li>
-                    <li><button id="removeTarea" data-key='${id}' ><i class="fa-solid fa-trash"'></i></button></li>
+                    <li><button id="removeTarea" data-key='${id}' onclick="setupTareaDelete(this)" ><i class="fa-solid fa-trash"'></i></button></li>
                 </ul>
             </div>
         `

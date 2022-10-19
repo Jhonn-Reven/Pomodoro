@@ -5,6 +5,7 @@ import { setupMenu } from './modules/menu/menu'
 import { setupReloj,setupRelojTime } from "./modules/reloj/reloj";
 import { setupTareaAdd} from "./modules/tareas/tareaAdd";
 import { setupTareaEdit} from "./modules/tareas/tareaEdit";
+import { setupTareaDelete} from "./modules/tareas/tareaDelete";
 import { setupTarea} from "./modules/tareas/tarea";
 
 
@@ -40,6 +41,7 @@ document.querySelector('#app').innerHTML =
 `
 
 window.setupTareaEdit =  setupTareaEdit;
+window.setupTareaDelete =  setupTareaDelete;
 // object.addEventListener("click", setupTareaEdit(this));
 setupRelojTime(document.querySelector('#times'));
 setupMenu(document.querySelector('#menu'));
