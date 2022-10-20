@@ -20,13 +20,18 @@ export function setupTareaAdd(element, fn){
 
     }
 
-    const createHtmlNewTask = function(id,title){
+    const createHtmlNewTask = function(id,title,state){
         let taskNew = document.createElement('div');
-        taskNew.classList.add('container-task');
+        if (state === 0) {
+            taskNew.classList.add('container-task')
+        } else {
+            taskNew.classList.add('container-task')
+            taskNew.classList.add('hecho')
+        }
         taskNew.setAttribute("id",'task'+id);
         taskNew.innerHTML = /*html */`
             <div class="task">
-                <div class="task-mark " ><a href="#"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
+                <div class="task-mark" ><a data-key='${id}'  href="#" onclick="setupTareaDone(this)"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
                 <div class="task-title">${title}</div>
             </div>
             <div class="task-tools">
@@ -74,7 +79,7 @@ export function setupTareaAdd(element, fn){
 
             const data = {
                 titleTarea:titleTarea.value,
-                state: 1   
+                state: 0   
             }
             addData(data)
             containerRemove.remove();
@@ -118,7 +123,7 @@ export function setupTareaAdd(element, fn){
                     if(cursor){
                         //data = cursor.value;
                         //console.log(cursor)
-                        tareaParent.append(createHtmlNewTask(cursor.primaryKey,cursor.value.titleTarea))
+                        tareaParent.append(createHtmlNewTask(cursor.primaryKey,cursor.value.titleTarea,cursor.value.state))
                         cursor.continue()
                     }
                 }

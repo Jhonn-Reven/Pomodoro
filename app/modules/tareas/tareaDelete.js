@@ -61,7 +61,7 @@ export function setupTareaDelete(element){
             taskNew.setAttribute("id",'task'+id);
             taskNew.innerHTML = /*html */`
                 <div class="task">
-                    <div class="task-mark " ><a href="#"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
+                    <div class="task-mark " ><a data-key='${id}'  href="#" onclick="setupTareaDone(this)"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
                     <div class="task-title">${title}</div>
                 </div>
                 <div class="task-tools">

@@ -19,6 +19,7 @@ export function setupTareaEdit(element){
 
             containerTask.innerHTML = createHtmlFormTask(key,data.titleTarea)
             let inputEdit = document.querySelector('#taskEdit'+key);
+            
             inputEdit.focus()
             if (typeof inputEdit.selectionStart == "number") {
                 inputEdit.selectionStart = inputEdit.selectionEnd = inputEdit.value.length;
@@ -27,6 +28,7 @@ export function setupTareaEdit(element){
                 range.collapse(false);
                 range.select();
             }
+
             actionCancel(key,data.titleTarea,containerTask) 
             actionSave(key,containerTask) 
             actionSaveEnter(key,containerTask) 
@@ -69,11 +71,11 @@ export function setupTareaEdit(element){
 
     }
 
-    const createHtmlViewTask = function(id,title){
+    const createHtmlViewTask = function(id,title,state){
 
         let taskForm = /*html */`
              <div class="task">
-                <div class="task-mark " ><a href="#"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
+                <div class="task-mark ${state = 1 ? 'hecho' : ''}" ><a href="#" data-key='${id}'  onclick="setupTareaDone(this)"><i class="fa-regular fa-lg fa-circle-check"></i></a></div>
                 <div class="task-title">${title}</div>
             </div>
             <div class="task-tools">
@@ -92,6 +94,7 @@ export function setupTareaEdit(element){
         // console.log(containerRemove);
         //console.log(containerShow);
         let btnCancel = document.querySelector('.cancel-task');
+        
         btnCancel.addEventListener('click', ()=>{
             containerShow.innerHTML =  createHtmlViewTask(id,title)
         })
@@ -135,7 +138,7 @@ export function setupTareaEdit(element){
             }
             updateData(data,id);
             readOneData(id,(data)=>{
-                console.log(containerTask)
+                //console.log(containerTask)
                 containerTask.classList.remove('container-task-new');
                 containerTask.classList.add('container-task');
                 containerTask.innerHTML = createHtmlViewTask(id,data.titleTarea)
