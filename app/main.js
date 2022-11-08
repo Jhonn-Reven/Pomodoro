@@ -2,7 +2,7 @@ import '../public/css/style.css'
 import Sortable from 'sortablejs';
 import { setupCreateBD } from "./helpers/createBD";
 import { setupMenu } from './modules/menu/menu'
-import { setupReloj,setupRelojTime } from "./modules/reloj/reloj";
+import { setupReloj,setupRelojTime, cronometro } from "./modules/reloj/reloj";
 import { setupTareaAdd} from "./modules/tareas/tareaAdd";
 import { setupTareaEdit} from "./modules/tareas/tareaEdit";
 import { setupTareaDone} from "./modules/tareas/tareaDone";
@@ -25,7 +25,7 @@ document.querySelector('#app').innerHTML =
         <div class="time" id='times'></div>
         <div class="reloj" id="reloj"></div> 
         <div class="control">
-          <button class="neumorphic play" ><i class="fa-solid fa-2x fa-play"></i></button>
+          <button class="neumorphic play" onclick="cronometro(0,25)" ><i class="fa-solid fa-2x fa-play"></i></button>
         </div>
       </div> 
       <div class="tareas neumorphic">
@@ -44,9 +44,10 @@ document.querySelector('#app').innerHTML =
 window.setupTareaEdit =  setupTareaEdit;
 window.setupTareaDelete =  setupTareaDelete;
 window.setupTareaDone =  setupTareaDone;
+window.cronometro = cronometro;
 // object.addEventListener("click", setupTareaEdit(this));
-setupRelojTime(document.querySelector('#times'));
 setupMenu(document.querySelector('#menu'));
+setupRelojTime(document.querySelector('#times'));
 setupReloj(document.querySelector('#reloj'));
 setupTareaAdd(document.querySelector('#addTarea'));
 setupTarea(document.querySelector('#tarea'));

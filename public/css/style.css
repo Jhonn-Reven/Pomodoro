@@ -419,7 +419,7 @@ width: 100%;
   border-radius: 10px; 
 }
 
-.donus{
+.donut{
   position:relative;
   border-radius:50%;
   height:280px;
@@ -429,7 +429,7 @@ width: 100%;
   align-items:center;
 
 }
-.donus-interior{
+.donut-interior{
   border:1px solid #fff;
   height:250px;
   width:250px;
@@ -440,16 +440,16 @@ width: 100%;
   flex-direction: column;
   gap:20px;
 }
-.donus-interior p:nth-child(3){
+.donut-interior p:nth-child(3){
   font-weight: bolder;
   color: var(--color-primary)
 }
 
-.neumorphism-donus{
+.neumorphism-donut{
     box-shadow: inset -6px -6px 12px  var(--light-shadow), inset
       6px 6px 12px  var(--dark-shadow)
 }
-.neumorphism-donus-i{
+.neumorphism-donut-i{
     box-shadow: -6px -6px 12px  var(--light-shadow),
       6px 6px 12px  var(--dark-shadow), inset 3px 3px 12px  rgb(230, 230, 230)
 }
@@ -459,7 +459,7 @@ circle {
     stroke-width: 14px;
     stroke-dasharray: 829;
     stroke-dashoffset:829;
-    animation:progress-circle 25s infinite;
+    /* animation:progress-circle 25s infinite; */
     stroke: #f75023;
 }
 
@@ -469,7 +469,7 @@ svg {
     left: 0;
 }
 
-.reloj .donus:nth-child(2) circle {
+.reloj .donut:nth-child(2) circle {
    stroke: #f75023;
 }
 
